@@ -69,8 +69,6 @@ namespace rpg
             player.animations[3] = new SpriteAnimation(walkRight, 4, 8);
 
             player.anim = player.animations[0];
-
-            Enemy.enemies.Add(new Enemy(new Vector2(100, 100), skull));
         }
 
         protected override void Update(GameTime gameTime)
@@ -79,6 +77,7 @@ namespace rpg
                 Exit();
 
             player.Update(gameTime);
+            Controller.Update(gameTime, skull);
 
             camera.Position = player.Position;
             camera.Update(gameTime);
@@ -92,6 +91,22 @@ namespace rpg
             {
                 e.Update(gameTime, player.Position);
             }
+
+            foreach (Projectile proj in Projectile.projectiles)
+            {
+                foreach (Enemy enemy in Enemy.enemies)
+                {
+                    int sum = proj.radius + enemy.radius;
+                    if (Vector2.Distance(proj.Position, enemy.Position) < sum)
+                    {
+                        proj.Collided = true;
+                        enemy.Dead = true; ;
+                    }
+                }
+            }
+
+            Projectile.projectiles.RemoveAll(p => p.Collided);
+            Enemy.enemies.RemoveAll(e => e.Dead);
 
             base.Update(gameTime);
         }

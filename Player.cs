@@ -15,7 +15,6 @@ namespace rpg
         public SpriteAnimation anim;
 
         public SpriteAnimation[] animations = new SpriteAnimation[4];
-        internal object animation;
 
         public Vector2 Position
         {
