@@ -62,6 +62,8 @@ namespace rpg
             background = Content.Load<Texture2D>("background");
             ball = Content.Load<Texture2D>("ball");
             skull = Content.Load<Texture2D>("skull");
+
+            player.anim = new SpriteAnimation(walkDown, 4, 8);
         }
 
         protected override void Update(GameTime gameTime)
@@ -83,7 +85,7 @@ namespace rpg
 
             _spriteBatch.Begin(camera);
             _spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
-            _spriteBatch.Draw(playerSprite, player.Position, Color.White);
+            player.anim.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

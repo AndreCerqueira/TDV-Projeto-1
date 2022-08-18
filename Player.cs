@@ -11,6 +11,8 @@ namespace rpg
         private Dir direction = Dir.Down;
         private bool isMoving = false;
 
+        public SpriteAnimation anim;
+
         public Vector2 Position
         {
             get
@@ -73,6 +75,9 @@ namespace rpg
                         break;
                 }
             }
+
+            anim.Position = new Vector2(position.X - 48, position.Y - 48);
+            anim.Update(gameTime);
         }
     }
 }
