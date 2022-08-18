@@ -69,6 +69,8 @@ namespace rpg
             player.animations[3] = new SpriteAnimation(walkRight, 4, 8);
 
             player.anim = player.animations[0];
+
+            Enemy.enemies.Add(new Enemy(new Vector2(100, 100), skull));
         }
 
         protected override void Update(GameTime gameTime)
@@ -86,6 +88,11 @@ namespace rpg
                 proj.Update(gameTime);
             }
 
+            foreach (Enemy e in Enemy.enemies)
+            {
+                e.Update(gameTime);
+            }
+
             base.Update(gameTime);
         }
 
@@ -95,6 +102,11 @@ namespace rpg
 
             _spriteBatch.Begin(camera);
             _spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
+
+            foreach (Enemy e in Enemy.enemies)
+            {
+                e.anim.Draw(_spriteBatch);
+            }
 
             foreach (Projectile proj in Projectile.projectiles)
             {
