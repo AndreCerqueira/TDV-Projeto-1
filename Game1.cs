@@ -19,6 +19,8 @@ namespace rpg
         Texture2D ball;
         Texture2D skull;
 
+        Player player = new Player();
+
 
         public Game1()
         {
@@ -67,6 +69,7 @@ namespace rpg
 
             _spriteBatch.Begin();
             _spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
+            _spriteBatch.Draw(playerSprite, player.Position, Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);
