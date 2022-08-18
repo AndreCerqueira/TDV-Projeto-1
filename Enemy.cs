@@ -24,9 +24,16 @@ namespace rpg
             get { return position; }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Vector2 playerPos)
         {
+            anim.Position = new Vector2(position.X - 48, position.Y - 66);
             anim.Update(gameTime);
+
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            Vector2 moveDir = playerPos - position;
+            moveDir.Normalize();
+            position += moveDir * speed * dt;
         }
     }
 }
