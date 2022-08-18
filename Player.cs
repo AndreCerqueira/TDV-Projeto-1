@@ -13,6 +13,8 @@ namespace rpg
 
         public SpriteAnimation anim;
 
+        public SpriteAnimation[] animations = new SpriteAnimation[4];
+
         public Vector2 Position
         {
             get
@@ -56,7 +58,7 @@ namespace rpg
                 direction = Dir.Down;
                 isMoving = true;
             }
-
+                        
             if (isMoving)
             {
                 switch (direction)
@@ -76,8 +78,17 @@ namespace rpg
                 }
             }
 
+            anim = animations[(int)direction];
+
             anim.Position = new Vector2(position.X - 48, position.Y - 48);
-            anim.Update(gameTime);
+            
+            if (isMoving)
+            {
+                anim.Update(gameTime);
+            } else
+            {
+                anim.setFrame(1);
+            }
         }
     }
 }

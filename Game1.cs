@@ -63,7 +63,12 @@ namespace rpg
             ball = Content.Load<Texture2D>("ball");
             skull = Content.Load<Texture2D>("skull");
 
-            player.anim = new SpriteAnimation(walkDown, 4, 8);
+            player.animations[0] = new SpriteAnimation(walkDown, 4, 8);
+            player.animations[1] = new SpriteAnimation(walkUp, 4, 8);
+            player.animations[2] = new SpriteAnimation(walkLeft, 4, 8);
+            player.animations[3] = new SpriteAnimation(walkRight, 4, 8);
+
+            player.anim = player.animations[0];
         }
 
         protected override void Update(GameTime gameTime)
