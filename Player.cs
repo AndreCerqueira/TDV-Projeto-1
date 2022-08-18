@@ -60,6 +60,11 @@ namespace rpg
                 direction = Dir.Down;
                 isMoving = true;
             }
+
+            if (kState.IsKeyDown(Keys.Space))
+            {
+                isMoving = false;
+            }
                         
             if (isMoving)
             {
@@ -84,7 +89,11 @@ namespace rpg
 
             anim.Position = new Vector2(position.X - 48, position.Y - 48);
             
-            if (isMoving)
+            if (kState.IsKeyDown(Keys.Space))
+            {
+                anim.setFrame(0);
+            }
+            else if (isMoving)
             {
                 anim.Update(gameTime);
             } else
