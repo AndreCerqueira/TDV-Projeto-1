@@ -1,9 +1,11 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/gusto/Desktop/CSharp/rpg/Content/background.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/background.xnb","TextureProcessor","Texture2DContent",70634,24920149,1.0319602
-"C:/Users/gusto/Desktop/CSharp/rpg/Content/ball.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/ball.xnb","TextureProcessor","Texture2DContent",699,36949,0.0041152
-"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/player.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/player.xnb","TextureProcessor","Texture2DContent",1072,36949,0.0052995
-"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkDown.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/walkDown.xnb","TextureProcessor","Texture2DContent",5078,147541,0.0070017
-"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkLeft.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/walkLeft.xnb","TextureProcessor","Texture2DContent",5640,147541,0.0065878
-"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkRight.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/walkRight.xnb","TextureProcessor","Texture2DContent",5308,147541,0.0100038
-"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkUp.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/walkUp.xnb","TextureProcessor","Texture2DContent",4574,147541,0.0081371
-"C:/Users/gusto/Desktop/CSharp/rpg/Content/skull.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/skull.xnb","TextureProcessor","Texture2DContent",9601,506965,0.0166407
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/background.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/background.xnb","TextureProcessor","Texture2DContent",70634,24920149,0.8972281
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/ball.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/ball.xnb","TextureProcessor","Texture2DContent",699,36949,0.0026765
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/player.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/player.xnb","TextureProcessor","Texture2DContent",1072,36949,0.0034769
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkDown.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/walkDown.xnb","TextureProcessor","Texture2DContent",5078,147541,0.0062833
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkLeft.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/walkLeft.xnb","TextureProcessor","Texture2DContent",5640,147541,0.0054455
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkRight.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/walkRight.xnb","TextureProcessor","Texture2DContent",5308,147541,0.0079627
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkUp.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Player/walkUp.xnb","TextureProcessor","Texture2DContent",4574,147541,0.0062232
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/skull.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/skull.xnb","TextureProcessor","Texture2DContent",9601,506965,0.0154829
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Sounds/blip.wav","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Sounds/blip.xnb","SoundEffectProcessor","SoundEffectContent",7218,7279,1.59739
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Sounds/nature.ogg","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Sounds/nature.xnb","SongProcessor","SongContent",1048881,124,2.3545284

@@ -7,3 +7,5 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkRight.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Player/walkRight.xnb","TextureProcessor","Texture2DContent",5308,147541,0.0069986
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkUp.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Player/walkUp.xnb","TextureProcessor","Texture2DContent",4574,147541,0.0058936
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/skull.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/skull.xnb","TextureProcessor","Texture2DContent",9601,506965,0.0243051
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Sounds/blip.wav","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Sounds/blip.xnb","SoundEffectProcessor","SoundEffectContent",7218,7279,1.4768775
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Sounds/nature.ogg","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Sounds/nature.xnb","SongProcessor","SongContent",1048881,124,2.4070597

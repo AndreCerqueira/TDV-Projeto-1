@@ -32,3 +32,6 @@ C:\Users\gusto\Desktop\CSharp\rpg\obj\Debug\net6.0\rpg.pdb
 C:\Users\gusto\Desktop\CSharp\rpg\obj\Debug\net6.0\rpg.genruntimeconfig.cache
 C:\Users\gusto\Desktop\CSharp\rpg\obj\Debug\net6.0\ref\rpg.dll
 C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Comora.dll
+C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Content\Sounds\blip.xnb
+C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Content\Sounds\nature.ogg
+C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Content\Sounds\nature.xnb

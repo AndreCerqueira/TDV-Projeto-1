@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Comora;
 
 namespace rpg
@@ -12,6 +14,13 @@ namespace rpg
         Left,
         Right,
     }
+
+    public static class MySounds
+    {
+        public static SoundEffect projectileSound;
+        public static Song bgMusic;
+    }
+
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
@@ -67,6 +76,10 @@ namespace rpg
             player.animations[1] = new SpriteAnimation(walkUp, 4, 8);
             player.animations[2] = new SpriteAnimation(walkLeft, 4, 8);
             player.animations[3] = new SpriteAnimation(walkRight, 4, 8);
+
+            MySounds.projectileSound = Content.Load<SoundEffect>("Sounds/blip"); // .wav = sound effect
+            MySounds.bgMusic = Content.Load<Song>("Sounds/nature"); // .ogg = songs
+            MediaPlayer.Play(MySounds.bgMusic); // .stop() .pause()
 
             player.anim = player.animations[0];
         }
