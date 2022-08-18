@@ -32,16 +32,20 @@ namespace rpg
             set { dead = value; }
         }
 
-        public void Update(GameTime gameTime, Vector2 playerPos)
+        public void Update(GameTime gameTime, Vector2 playerPos, bool isPlayerDead)
         {
             anim.Position = new Vector2(position.X - 48, position.Y - 66);
             anim.Update(gameTime);
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            Vector2 moveDir = playerPos - position;
-            moveDir.Normalize();
-            position += moveDir * speed * dt;
+            if (!isPlayerDead)
+            {
+                Vector2 moveDir = playerPos - position;
+                moveDir.Normalize();
+                position += moveDir * speed * dt;
+            }
+
         }
     }
 }
