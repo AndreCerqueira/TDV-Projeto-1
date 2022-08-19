@@ -116,10 +116,13 @@ namespace rpg
                 anim.setFrame(1);
             }
 
-            if (kState.IsKeyDown(Keys.Space) && kStateOld.IsKeyUp(Keys.Space))
+            if (!dead)
             {
-                Projectile.projectiles.Add(new Projectile(position, direction));
-                MySounds.projectileSound.Play(1f, 0.5f, 0f); // volume, pitch, pan(left or right speaker)
+                if (kState.IsKeyDown(Keys.Space) && kStateOld.IsKeyUp(Keys.Space))
+                {
+                    Projectile.projectiles.Add(new Projectile(position, direction));
+                    MySounds.projectileSound.Play(1f, 0.5f, 0f); // volume, pitch, pan(left or right speaker)
+                }
             }
             kStateOld = kState;
         }

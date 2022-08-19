@@ -37,6 +37,13 @@
 /processorParam:TextureFormat=Color
 /build:ball.png
 
+#begin galleryFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:galleryFont.spritefont
+
 #begin Player/player.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -114,6 +121,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/blip.wav
+
+#begin Sounds/explode.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/explode.wav
 
 #begin Sounds/nature.ogg
 /importer:OggImporter

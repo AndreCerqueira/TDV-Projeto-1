@@ -1,6 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/background.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/background.xnb","TextureProcessor","Texture2DContent",70634,24920149,0.8110335
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/ball.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/ball.xnb","TextureProcessor","Texture2DContent",699,36949,0.0035005
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/galleryFont.spritefont","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/galleryFont.xnb","FontDescriptionProcessor","SpriteFontContent",2065,70687,0.2290809
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/player.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Player/player.xnb","TextureProcessor","Texture2DContent",1072,36949,0.0035108
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkDown.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Player/walkDown.xnb","TextureProcessor","Texture2DContent",5078,147541,0.0053879
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkLeft.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Player/walkLeft.xnb","TextureProcessor","Texture2DContent",5640,147541,0.0052214
@@ -8,4 +9,5 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/Player/walkUp.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Player/walkUp.xnb","TextureProcessor","Texture2DContent",4574,147541,0.0058936
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/skull.png","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/skull.xnb","TextureProcessor","Texture2DContent",9601,506965,0.0243051
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/Sounds/blip.wav","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Sounds/blip.xnb","SoundEffectProcessor","SoundEffectContent",7218,7279,1.4768775
+"C:/Users/gusto/Desktop/CSharp/rpg/Content/Sounds/explode.wav","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Sounds/explode.xnb","SoundEffectProcessor","SoundEffectContent",50988,51049,1.6680297
 "C:/Users/gusto/Desktop/CSharp/rpg/Content/Sounds/nature.ogg","C:/Users/gusto/Desktop/CSharp/rpg/Content/bin/DesktopGL/Content/Sounds/nature.xnb","SongProcessor","SongContent",1048881,124,2.4070597

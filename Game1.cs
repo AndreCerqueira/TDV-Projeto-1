@@ -5,6 +5,12 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using Comora;
 
+// todo game start and pause
+// todo high score state recorder
+// maybe 3 lives
+// invinsibility after taking dmg
+// dash mechanic
+
 namespace rpg
 {
     enum Dir
@@ -18,6 +24,7 @@ namespace rpg
     public static class MySounds
     {
         public static SoundEffect projectileSound;
+        public static SoundEffect enemyHit;
         public static Song bgMusic;
     }
 
@@ -36,7 +43,11 @@ namespace rpg
         Texture2D ball;
         Texture2D skull;
 
+        SpriteFont gameFont;
+
         Player player = new Player();
+
+        int score = 0;
 
         Camera camera;
 
@@ -72,12 +83,15 @@ namespace rpg
             ball = Content.Load<Texture2D>("ball");
             skull = Content.Load<Texture2D>("skull");
 
+            gameFont = Content.Load<SpriteFont>("galleryFont");
+
             player.animations[0] = new SpriteAnimation(walkDown, 4, 8);
             player.animations[1] = new SpriteAnimation(walkUp, 4, 8);
             player.animations[2] = new SpriteAnimation(walkLeft, 4, 8);
             player.animations[3] = new SpriteAnimation(walkRight, 4, 8);
 
             MySounds.projectileSound = Content.Load<SoundEffect>("Sounds/blip"); // .wav = sound effect
+            MySounds.enemyHit = Content.Load<SoundEffect>("Sounds/explode");
             MySounds.bgMusic = Content.Load<Song>("Sounds/nature"); // .ogg = songs
             MediaPlayer.Play(MySounds.bgMusic); // .stop() .pause()
 
@@ -121,8 +135,10 @@ namespace rpg
                     int sum = proj.radius + enemy.radius;
                     if (Vector2.Distance(proj.Position, enemy.Position) < sum)
                     {
+                        MySounds.enemyHit.Play(1f, -1.0f, 0f);
                         proj.Collided = true;
-                        enemy.Dead = true; ;
+                        enemy.Dead = true;                        
+                        score++;
                     }
                 }
             }
@@ -139,6 +155,7 @@ namespace rpg
 
             _spriteBatch.Begin(camera);
             _spriteBatch.Draw(background, new Vector2(-500, -500), Color.White);
+            _spriteBatch.DrawString(gameFont, "Score: " + score.ToString(), new Vector2(player.Position.X - 600, player.Position.Y - 325), Color.White);
 
             foreach (Enemy e in Enemy.enemies)
             {

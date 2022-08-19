@@ -35,3 +35,5 @@ C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Comora.dll
 C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Content\Sounds\blip.xnb
 C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Content\Sounds\nature.ogg
 C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Content\Sounds\nature.xnb
+C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Content\galleryFont.xnb
+C:\Users\gusto\Desktop\CSharp\rpg\bin\Debug\net6.0\Content\Sounds\explode.xnb
