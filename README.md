@@ -23,13 +23,13 @@ Este projeto é sobre um jogo RPG (Role-Playing Game) Topdown 2D desenvolvido em
 # Estrutura do Código
 O projeto é dividido em várias classes, cada uma responsável por um aspecto específico do jogo:
 
-1. Game1: Classe principal do jogo que gere a lógica do jogo, atualizações e renderização. Contém a inicialização, carregamento de conteúdo, atualização e métodos de desenho.
-2. Player: Classe que gere o personagem controlável pelo jogador. Inclui a atualização da posição, animação e detecção de colisão.
-3. Enemy: Classe que gere os inimigos que se movem em direção ao jogador. Inclui a atualização da posição, animação e detecção de colisão.
-4. Projectile: Classe que gere os projéteis disparados pelo jogador. Inclui a atualização da posição e detecção de colisão.
-5. SpriteManager e SpriteAnimation: Classes que gerem e animam sprites para personagens ou objetos do jogo.
-6. Controller: Classe que gere a lógica de criação de inimigos e o tempo entre as criações.
-7. MySounds: Classe estática que armazena efeitos sonoros e música de fundo utilizados no jogo.
+1. <b>Game1:</b> Classe principal do jogo que gere a lógica do jogo, atualizações e renderização. Contém a inicialização, carregamento de conteúdo, atualização e métodos de desenho.
+2. <b>Player:</b> Classe que gere o personagem controlável pelo jogador. Inclui a atualização da posição, animação e detecção de colisão.
+3. <b>Enemy:</b> Classe que gere os inimigos que se movem em direção ao jogador. Inclui a atualização da posição, animação e detecção de colisão.
+4. <b>Projectile:</b> Classe que gere os projéteis disparados pelo jogador. Inclui a atualização da posição e detecção de colisão.
+5. <b>SpriteManager e SpriteAnimation:</b> Classes que gerem e animam sprites para personagens ou objetos do jogo.
+6. <b>Controller:</b> Classe que gere a lógica de criação de inimigos e o tempo entre as criações.
+7. <b>MySounds:</b> Classe estática que armazena efeitos sonoros e música de fundo utilizados no jogo.
 
 Como Jogar
 - Use as setas do teclado para mover o personagem controlável pelo cenário.
