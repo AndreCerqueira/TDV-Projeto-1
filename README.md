@@ -1,5 +1,5 @@
-## Jogo RPG XNA
-Este projeto é um jogo de RPG (Role-Playing Game) 2D desenvolvido utilizando a biblioteca Microsoft.Xna.Framework para C#. O projeto consiste num jogador controlável que se move pelo cenário e dispara projéteis nos inimigos. O objetivo é eliminar o maior número de inimigos possível e aumentar a pontuação.
+## Jogo RPG
+Este projeto é sobre um jogo RPG (Role-Playing Game) Topdown 2D desenvolvido em Monogmae e C#. O projeto consiste num jogador controlável que se move pelo cenário e dispara projéteis nos inimigos. O objetivo é eliminar o maior número de inimigos possível e aumentar a pontuação.
 
 # Requisitos
 - .NET Framework
