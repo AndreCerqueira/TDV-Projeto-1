@@ -1,6 +1,11 @@
 ## Jogo RPG
 Este projeto é sobre um jogo RPG (Role-Playing Game) Topdown 2D desenvolvido em Monogmae e C#. O projeto consiste num jogador controlável que se move pelo cenário e dispara projéteis nos inimigos. O objetivo é eliminar o maior número de inimigos possível e aumentar a pontuação.
 
+# Grupo
+- 20115 [Andre Cerqueira](https://github.com/AndreCerqueira)
+- 20116 [Nuno Fernandes](https://github.com/NunoIsidoro)
+- 25968 [Alexandre Marques](https://github.com/Alexmarques11)
+
 # Requisitos
 - .NET Framework
 - Microsoft.Xna.Framework
