@@ -25,6 +25,12 @@ Este projeto é sobre um jogo RPG (Role-Playing Game) Topdown 2D desenvolvido em
 - Sistema de pontuação
 - Música de fundo e efeitos sonoros
 
+Como Jogar
+- Use as setas do teclado para mover o personagem controlável pelo cenário.
+- Pressione a tecla Espaço para disparar projéteis nos inimigos.
+- Evite colidir com os inimigos para não perder o jogo.
+- Elimine o maior número de inimigos possível para aumentar a sua pontuação.
+
 # Estrutura do Código
 O projeto é dividido em várias classes, cada uma responsável por um aspecto específico do jogo:
 
@@ -36,8 +42,13 @@ O projeto é dividido em várias classes, cada uma responsável por um aspecto e
 6. <b>Controller:</b> Classe que gere a lógica de criação de inimigos e o tempo entre as criações.
 7. <b>MySounds:</b> Classe estática que armazena efeitos sonoros e música de fundo utilizados no jogo.
 
-Como Jogar
-- Use as setas do teclado para mover o personagem controlável pelo cenário.
-- Pressione a tecla Espaço para disparar projéteis nos inimigos.
-- Evite colidir com os inimigos para não perder o jogo.
-- Elimine o maior número de inimigos possível para aumentar a sua pontuação.
+# Análise da Organização das Pastas do Jogo
+A organização das pastas do jogo está estruturada da seguinte forma:
+
+- <b>Scripts:</b> Os arquivos de script estão na raiz do projeto, sem uma pasta específica.
+- <b>Content:</b> A pasta Content contém todos os assets do jogo.
+- <b>Font:</b> A fonte do jogo está localizada diretamente na pasta Content, sem uma pasta específica.
+- <b>Inimigo:</b> O spritesheet do inimigo está localizado diretamente na pasta Content, sem uma pasta específica.
+- <b>Projétil:</b> O spritesheet do projétil está localizado diretamente na pasta Content, sem uma pasta específica.
+- <b>Sounds:</b> A pasta Sounds contém todos os arquivos de som do jogo.
+- <b>Player:</b> A pasta Player contém 5 spritesheets, cada um correspondendo a uma animação top-down diferente do personagem controlável pelo jogador.
