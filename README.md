@@ -59,65 +59,65 @@ Esta secção explicará um script importante de código encontrado no projeto, 
 
 ### Código
 ```cs
-    public class SpriteManager
+public class SpriteManager
+{
+    protected Texture2D Texture;
+    public Vector2 Position = Vector2.Zero;
+    public Color Color = Color.White;
+    public Vector2 Origin;
+    public float Rotation = 0f;
+    public float Scale = 1f;
+    public SpriteEffects SpriteEffect;
+    protected Rectangle[] Rectangles;
+    protected int FrameIndex = 0;
+
+    public SpriteManager(Texture2D Texture, int frames)
     {
-        protected Texture2D Texture;
-        public Vector2 Position = Vector2.Zero;
-        public Color Color = Color.White;
-        public Vector2 Origin;
-        public float Rotation = 0f;
-        public float Scale = 1f;
-        public SpriteEffects SpriteEffect;
-        protected Rectangle[] Rectangles;
-        protected int FrameIndex = 0;
+        this.Texture = Texture;
+        int width = Texture.Width / frames;
+        Rectangles = new Rectangle[frames];
 
-        public SpriteManager(Texture2D Texture, int frames)
+        for (int i = 0; i < frames; i++)
+            Rectangles[i] = new Rectangle(i * width, 0, width, Texture.Height);
+    }
+
+    public void Draw(SpriteBatch spriteBatch)
+    {
+        spriteBatch.Draw(Texture, Position, Rectangles[FrameIndex], Color, Rotation, Origin, Scale, SpriteEffect, 0f);
+    }
+}
+
+public class SpriteAnimation : SpriteManager
+{
+    private float timeElapsed;
+    public bool IsLooping = true;
+    private float timeToUpdate; //default, you may have to change it
+    public int FramesPerSecond { set { timeToUpdate = (1f / value); } }
+
+    public SpriteAnimation(Texture2D Texture, int frames, int fps) : base(Texture, frames) {
+        FramesPerSecond = fps;
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        if (timeElapsed > timeToUpdate)
         {
-            this.Texture = Texture;
-            int width = Texture.Width / frames;
-            Rectangles = new Rectangle[frames];
+            timeElapsed -= timeToUpdate;
 
-            for (int i = 0; i < frames; i++)
-                Rectangles[i] = new Rectangle(i * width, 0, width, Texture.Height);
-        }
+            if (FrameIndex < Rectangles.Length - 1)
+                FrameIndex++;
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(Texture, Position, Rectangles[FrameIndex], Color, Rotation, Origin, Scale, SpriteEffect, 0f);
+            else if (IsLooping)
+                FrameIndex = 0;
         }
     }
 
-    public class SpriteAnimation : SpriteManager
+    public void setFrame(int frame)
     {
-        private float timeElapsed;
-        public bool IsLooping = true;
-        private float timeToUpdate; //default, you may have to change it
-        public int FramesPerSecond { set { timeToUpdate = (1f / value); } }
-
-        public SpriteAnimation(Texture2D Texture, int frames, int fps) : base(Texture, frames) {
-            FramesPerSecond = fps;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (timeElapsed > timeToUpdate)
-            {
-                timeElapsed -= timeToUpdate;
-
-                if (FrameIndex < Rectangles.Length - 1)
-                    FrameIndex++;
-
-                else if (IsLooping)
-                    FrameIndex = 0;
-            }
-        }
-
-        public void setFrame(int frame)
-        {
-            FrameIndex = frame;
-        }
+        FrameIndex = frame;
     }
+}
 ```
 
 ### Classe SpriteManager
@@ -157,128 +157,128 @@ Esta secção analisará um trecho importante de código encontrado no projeto, 
 ### Código
 ```cs
 class Player
+{
+    private Vector2 position = new Vector2(500, 300);
+    private int speed = 300;
+    private Dir direction = Dir.Down;
+    private bool isMoving = false;
+    private KeyboardState kStateOld = Keyboard.GetState();
+    public bool dead = false;
+
+    public SpriteAnimation anim;
+
+    public SpriteAnimation[] animations = new SpriteAnimation[4];
+
+    public Vector2 Position
     {
-        private Vector2 position = new Vector2(500, 300);
-        private int speed = 300;
-        private Dir direction = Dir.Down;
-        private bool isMoving = false;
-        private KeyboardState kStateOld = Keyboard.GetState();
-        public bool dead = false;
-
-        public SpriteAnimation anim;
-
-        public SpriteAnimation[] animations = new SpriteAnimation[4];
-
-        public Vector2 Position
+        get
         {
-            get
-            {
-                return position;
-            }
-        }
-        public void setX(float newX)
-        {
-            position.X = newX;
-        }
-        public void setY(float newY)
-        {
-            position.Y = newY;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            KeyboardState kState = Keyboard.GetState();
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            isMoving = false;
-
-            if (kState.IsKeyDown(Keys.Right))
-            {
-                direction = Dir.Right;
-                isMoving = true;
-            }
-            if (kState.IsKeyDown(Keys.Up))
-            {
-                direction = Dir.Up;
-                isMoving = true;
-            }
-            if (kState.IsKeyDown(Keys.Left))
-            {
-                direction = Dir.Left;
-                isMoving = true;
-            }
-            if (kState.IsKeyDown(Keys.Down))
-            {
-                direction = Dir.Down;
-                isMoving = true;
-            }
-
-            if (kState.IsKeyDown(Keys.Space))
-            {
-                isMoving = false;
-            }
-
-            if (dead)
-                isMoving = false;
-                        
-            if (isMoving)
-            {
-                switch (direction)
-                {
-                    case Dir.Right:
-                        if (position.X < 1275)
-                        {
-                            position.X += speed * dt;                        
-                        }
-                        break;
-                    case Dir.Left:
-                        if (position.X > 225)
-                        {
-                            position.X -= speed * dt;
-                        }
-                        break;
-                    case Dir.Down:
-                        if (position.Y < 1250)
-                        {
-                            position.Y += speed * dt;
-                        }
-                        break;
-                    case Dir.Up:
-                        if (position.Y > 200)
-                        {
-                            position.Y -= speed * dt;
-                        }
-                        break;
-                }
-            }
-
-            anim = animations[(int)direction];
-
-            anim.Position = new Vector2(position.X - 48, position.Y - 48);
-            
-            if (kState.IsKeyDown(Keys.Space))
-            {
-                anim.setFrame(0);
-            }
-            else if (isMoving)
-            {
-                anim.Update(gameTime);
-            } else
-            {
-                anim.setFrame(1);
-            }
-
-            if (!dead)
-            {
-                if (kState.IsKeyDown(Keys.Space) && kStateOld.IsKeyUp(Keys.Space))
-                {
-                    Projectile.projectiles.Add(new Projectile(position, direction));
-                    MySounds.projectileSound.Play(1f, 0.5f, 0f); // volume, pitch, pan(left or right speaker)
-                }
-            }
-            kStateOld = kState;
+            return position;
         }
     }
+    public void setX(float newX)
+    {
+        position.X = newX;
+    }
+    public void setY(float newY)
+    {
+        position.Y = newY;
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        KeyboardState kState = Keyboard.GetState();
+        float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+        isMoving = false;
+
+        if (kState.IsKeyDown(Keys.Right))
+        {
+            direction = Dir.Right;
+            isMoving = true;
+        }
+        if (kState.IsKeyDown(Keys.Up))
+        {
+            direction = Dir.Up;
+            isMoving = true;
+        }
+        if (kState.IsKeyDown(Keys.Left))
+        {
+            direction = Dir.Left;
+            isMoving = true;
+        }
+        if (kState.IsKeyDown(Keys.Down))
+        {
+            direction = Dir.Down;
+            isMoving = true;
+        }
+
+        if (kState.IsKeyDown(Keys.Space))
+        {
+            isMoving = false;
+        }
+
+        if (dead)
+            isMoving = false;
+
+        if (isMoving)
+        {
+            switch (direction)
+            {
+                case Dir.Right:
+                    if (position.X < 1275)
+                    {
+                        position.X += speed * dt;                        
+                    }
+                    break;
+                case Dir.Left:
+                    if (position.X > 225)
+                    {
+                        position.X -= speed * dt;
+                    }
+                    break;
+                case Dir.Down:
+                    if (position.Y < 1250)
+                    {
+                        position.Y += speed * dt;
+                    }
+                    break;
+                case Dir.Up:
+                    if (position.Y > 200)
+                    {
+                        position.Y -= speed * dt;
+                    }
+                    break;
+            }
+        }
+
+        anim = animations[(int)direction];
+
+        anim.Position = new Vector2(position.X - 48, position.Y - 48);
+
+        if (kState.IsKeyDown(Keys.Space))
+        {
+            anim.setFrame(0);
+        }
+        else if (isMoving)
+        {
+            anim.Update(gameTime);
+        } else
+        {
+            anim.setFrame(1);
+        }
+
+        if (!dead)
+        {
+            if (kState.IsKeyDown(Keys.Space) && kStateOld.IsKeyUp(Keys.Space))
+            {
+                Projectile.projectiles.Add(new Projectile(position, direction));
+                MySounds.projectileSound.Play(1f, 0.5f, 0f); // volume, pitch, pan(left or right speaker)
+            }
+        }
+        kStateOld = kState;
+    }
+}
 ```
 
 A classe <b>Player</b> possui as seguintes propriedades e métodos:
@@ -307,3 +307,220 @@ O método <b>Update</b> realiza as seguintes ações:
 8. Se a tecla Espaço estiver pressionada, o jogador dispara um projétil na direção atual e reproduz o som do projétil.
 
 Em resumo, a classe <b>Player</b> é uma parte crucial do projeto do jogo RPG, pois controla o personagem principal do jogo. Ela oferece uma base sólida para gerir o movimento, a animação e a interação do jogador com o ambiente e os inimigos.
+
+### Projectile
+Esta secção analisará outro trecho importante de código encontrado no projeto, relacionado à classe Projectile. Esta classe é responsável por gerir os projéteis disparados pelo jogador, incluindo a atualização da posição e a detecção de colisão.
+
+### Código
+```cs
+internal class Projectile
+{
+    public static List<Projectile> projectiles = new List<Projectile>();
+
+    private Vector2 position;
+    private int speed = 1000;
+    public int radius = 18;
+    private Dir direction;
+    private bool collided = false;
+
+    public Projectile(Vector2 newPos, Dir newDir)
+    {
+        position = newPos;
+        direction = newDir;
+    }
+
+    public Vector2 Position
+    {
+        get
+        {
+            return position;
+        }
+    }
+
+    public bool Collided
+    {
+        get { return collided; }
+        set { collided = value; }
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+        switch (direction)
+        {
+            case Dir.Right:
+                position.X += speed * dt;
+                break;
+            case Dir.Left:
+                position.X -= speed * dt;
+                break;
+            case Dir.Up:
+                position.Y -= speed * dt;
+                break;
+            case Dir.Down:
+                position.Y += speed * dt;
+                break;
+        }
+    }
+}
+```
+
+A classe <b>Projectile</b> possui as seguintes propriedades e métodos:
+
+- <b>projectiles:</b> Lista estática que armazena todos os projéteis ativos.
+- <b>position:</b> A posição do projétil no cenário.
+- <b>speed:</b> A velocidade de movimento do projétil.
+- <b>radius:</b> O raio de colisão do projétil.
+- <b>direction:</b> A direção do movimento do projétil.
+- <b>collided:</b> Indica se o projétil colidiu com um inimigo.
+- <b>Position:</b> Propriedade que retorna a posição atual do projétil.
+- <b>Collided:</b> Propriedade que obtém ou define o valor da colisão.
+O construtor <b>Projectile</b> recebe dois parâmetros: newPos, que define a posição inicial do projétil, e newDir, que define a direção do projétil.
+
+O método <b>Update</b> é responsável por atualizar a posição do projétil. Ele recebe um objeto GameTime como parâmetro para controlar o tempo decorrido desde a última atualização.
+
+O método <b>Update</b> realiza as seguintes ações:
+
+1. Calcula o tempo decorrido desde a última atualização.
+2. Atualiza a posição do projétil de acordo com a direção e a velocidade.
+
+Em resumo, a classe Projectile desempenha um papel importante no projeto do jogo RPG, pois controla os projéteis disparados pelo jogador. Ela oferece uma base sólida para gerir o movimento dos projéteis e a detecção de colisão com os inimigos.
+
+### Enemy
+Agora vamos analisar outro trecho importante de código no projeto, relacionado à classe Enemy. Esta classe é responsável por gerir os inimigos que se movem em direção ao jogador, incluindo a atualização da posição, animação e detecção de colisão.
+
+### Código
+```cs
+internal class Enemy
+{
+    public static List<Enemy> enemies = new List<Enemy>();
+
+    private Vector2 position = new Vector2(0, 0);
+    private int speed = 150;
+    public SpriteAnimation anim;
+    public int radius = 30;
+    private bool dead = false;
+
+    public Enemy(Vector2 newPos, Texture2D spriteSheet)
+    {
+        position = newPos;
+        anim = new SpriteAnimation(spriteSheet, 10, 6);
+    }
+
+    public Vector2 Position
+    {
+        get { return position; }
+    }
+
+    public bool Dead
+    {
+        get { return dead; }
+        set { dead = value; }
+    }
+
+    public void Update(GameTime gameTime, Vector2 playerPos, bool isPlayerDead)
+    {
+        anim.Position = new Vector2(position.X - 48, position.Y - 66);
+        anim.Update(gameTime);
+
+        float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+        if (!isPlayerDead)
+        {
+            Vector2 moveDir = playerPos - position;
+            moveDir.Normalize();
+            position += moveDir * speed * dt;
+        }
+
+    }
+}
+```
+
+A classe <b>Enemy</b> possui as seguintes propriedades e métodos:
+
+- <b>enemies:</b> Lista estática que armazena todos os inimigos ativos.
+- <b>position:</b> A posição do inimigo no cenário.
+- <b>speed:</b> A velocidade de movimento do inimigo.
+- <b>anim:</b> Objeto SpriteAnimation que controla a animação do inimigo.
+- <b>radius:</b> O raio de colisão do inimigo.
+- <b>dead:</b> Indica se o inimigo está morto.
+- <b>Position:</b> Propriedade que retorna a posição atual do inimigo.
+- <b>Dead:</b> Propriedade que obtém ou define o valor da propriedade dead.
+O construtor Enemy recebe dois parâmetros: newPos, que define a posição inicial do inimigo, e spriteSheet, que define a imagem usada para a animação do inimigo.
+
+O método <b>Update</b> é responsável por atualizar a posição e animação do inimigo. Ele recebe três parâmetros: um objeto GameTime para controlar o tempo decorrido desde a última atualização, a posição do jogador (playerPos) e um booleano isPlayerDead, que indica se o jogador está morto.
+
+O método <b>Update</b> realiza as seguintes ações:
+
+1. Atualiza a posição do objeto de animação com base na posição do inimigo.
+2. Atualiza a animação do inimigo.
+3. Calcula o tempo decorrido desde a última atualização.
+4. Se o jogador não estiver morto, calcula a direção do movimento do inimigo em relação à posição do jogador, normaliza o vetor resultante e atualiza a posição do inimigo com base na direção, velocidade e tempo decorrido.
+
+Em resumo, a classe Enemy desempenha um papel importante no projeto do jogo RPG, pois controla os inimigos que se movem em direção ao jogador. Ela oferece uma base sólida para gerir a movimentação dos inimigos, animação e detecção de colisão com o jogador e projéteis.
+
+### Controller
+Vamos analisar o trecho de código relacionado à classe <b>Controller</b>. Essa classe é responsável por gerir a lógica de criação de inimigos no jogo, controlando o tempo entre cada inimigo gerado e a posição inicial deles no cenário.
+
+### Código
+```cs
+internal class Controller
+{
+    public static double timer = 2D;
+    public static double maxTime = 2D;
+    static Random rand = new Random();
+
+    public static void Update(GameTime gameTime, Texture2D spriteSheet)
+    {
+        timer -= gameTime.ElapsedGameTime.TotalSeconds;
+
+        if (timer <= 0)
+        {
+            int side = rand.Next(4);
+
+            switch (side)
+            {
+                case 0:
+                    Enemy.enemies.Add(new Enemy(new Vector2(-500, rand.Next(-500, 2000)), spriteSheet));
+                    break;
+                case 1:
+                    Enemy.enemies.Add(new Enemy(new Vector2(2000, rand.Next(-500, 2000)), spriteSheet));
+                    break;
+                case 2:
+                    Enemy.enemies.Add(new Enemy(new Vector2(rand.Next(-500, 2000), -500), spriteSheet));
+                    break;
+                case 3:
+                    Enemy.enemies.Add(new Enemy(new Vector2(rand.Next(-500, 2000), 2000), spriteSheet));
+                    break;
+            }
+
+            timer = maxTime;        
+
+            if (maxTime > 0.5)
+            {
+                maxTime -= 0.05D;
+            }
+        }
+    }
+}
+```
+
+A classe <b>Controller</b> possui as seguintes propriedades e métodos:
+
+- <b>timer:</b> Um temporizador que controla o tempo até o próximo inimigo ser gerado.
+- <b>maxTime:</b> O valor máximo do temporizador.
+- <b>rand:</b> Um objeto Random para gerar números aleatórios.
+- <b>Update:</b> Método que atualiza a lógica do controlador.
+O método <b>Update</b> recebe dois parâmetros: um objeto GameTime para controlar o tempo decorrido desde a última atualização e spriteSheet, que é a imagem usada para a animação dos inimigos.
+
+A lógica do método <b>Update</b> é a seguinte:
+
+1. Decrementa o valor do temporizador com base no tempo decorrido desde a última atualização.
+2. Se o temporizador for menor ou igual a zero, será criado um novo inimigo:
+3. Gera um número aleatório entre 0 e 3 para determinar o lado do cenário em que o inimigo será criado.
+4. Dependendo do valor gerado, cria um novo inimigo em uma posição aleatória fora do limite do cenário e adiciona-o à lista de inimigos.
+5. Reinicia o temporizador com o valor de maxTime.
+6. Se maxTime for maior que 0,5, decrementa 0,05 para tornar a criação de inimigos progressivamente mais rápida.
+
+Em resumo, a classe Controller é responsável por gerenciar a lógica de criação de inimigos no jogo. Ela controla o tempo entre cada inimigo gerado e a posição inicial deles no cenário, tornando a criação de inimigos progressivamente mais rápida à medida que o jogo avança.
