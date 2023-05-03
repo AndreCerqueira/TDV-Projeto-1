@@ -150,3 +150,160 @@ O método <b>Update</b> é responsável por atualizar o frame atual do sprite an
 O método <b>setFrame</b> permite definir manualmente o frame atual da animação.
 
 Em resumo, a combinação das classes <b>SpriteManager</b> e <b>SpriteAnimation</b> permite gerir e animar os sprites de maneira eficiente no projeto do jogo RPG. Elas oferecem uma base sólida para manipular os personagens e objetos do jogo, como o jogador, inimigos e projéteis.
+
+### Player
+Esta secção analisará um trecho importante de código encontrado no projeto, relacionado à classe <b>Player</b>. Esta classe é responsável por gerir o personagem controlável pelo jogador, incluindo a atualização da posição, animação e detecção de colisão.
+
+### Código
+```cs
+class Player
+    {
+        private Vector2 position = new Vector2(500, 300);
+        private int speed = 300;
+        private Dir direction = Dir.Down;
+        private bool isMoving = false;
+        private KeyboardState kStateOld = Keyboard.GetState();
+        public bool dead = false;
+
+        public SpriteAnimation anim;
+
+        public SpriteAnimation[] animations = new SpriteAnimation[4];
+
+        public Vector2 Position
+        {
+            get
+            {
+                return position;
+            }
+        }
+        public void setX(float newX)
+        {
+            position.X = newX;
+        }
+        public void setY(float newY)
+        {
+            position.Y = newY;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            KeyboardState kState = Keyboard.GetState();
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            isMoving = false;
+
+            if (kState.IsKeyDown(Keys.Right))
+            {
+                direction = Dir.Right;
+                isMoving = true;
+            }
+            if (kState.IsKeyDown(Keys.Up))
+            {
+                direction = Dir.Up;
+                isMoving = true;
+            }
+            if (kState.IsKeyDown(Keys.Left))
+            {
+                direction = Dir.Left;
+                isMoving = true;
+            }
+            if (kState.IsKeyDown(Keys.Down))
+            {
+                direction = Dir.Down;
+                isMoving = true;
+            }
+
+            if (kState.IsKeyDown(Keys.Space))
+            {
+                isMoving = false;
+            }
+
+            if (dead)
+                isMoving = false;
+                        
+            if (isMoving)
+            {
+                switch (direction)
+                {
+                    case Dir.Right:
+                        if (position.X < 1275)
+                        {
+                            position.X += speed * dt;                        
+                        }
+                        break;
+                    case Dir.Left:
+                        if (position.X > 225)
+                        {
+                            position.X -= speed * dt;
+                        }
+                        break;
+                    case Dir.Down:
+                        if (position.Y < 1250)
+                        {
+                            position.Y += speed * dt;
+                        }
+                        break;
+                    case Dir.Up:
+                        if (position.Y > 200)
+                        {
+                            position.Y -= speed * dt;
+                        }
+                        break;
+                }
+            }
+
+            anim = animations[(int)direction];
+
+            anim.Position = new Vector2(position.X - 48, position.Y - 48);
+            
+            if (kState.IsKeyDown(Keys.Space))
+            {
+                anim.setFrame(0);
+            }
+            else if (isMoving)
+            {
+                anim.Update(gameTime);
+            } else
+            {
+                anim.setFrame(1);
+            }
+
+            if (!dead)
+            {
+                if (kState.IsKeyDown(Keys.Space) && kStateOld.IsKeyUp(Keys.Space))
+                {
+                    Projectile.projectiles.Add(new Projectile(position, direction));
+                    MySounds.projectileSound.Play(1f, 0.5f, 0f); // volume, pitch, pan(left or right speaker)
+                }
+            }
+            kStateOld = kState;
+        }
+    }
+```
+
+A classe <b>Player</b> possui as seguintes propriedades e métodos:
+
+- <b>position:</b> A posição do jogador no cenário.
+- <b>speed:</b> A velocidade de movimento do jogador.
+- <b>direction:</b> A direção do movimento do jogador.
+- <b>isMoving:</b> Indica se o jogador está em movimento.
+- <b>kStateOld:</b> Armazena o estado anterior do teclado.
+- <b>dead:</b> Indica se o jogador está morto.
+- <b>anim:</b> A animação atual do jogador.
+- <b>animations:</b> Um array de animações, uma para cada direção.
+- <b>Position:</b> Propriedade que retorna a posição atual do jogador.
+- <b>setX e setY:</b> Métodos para definir as coordenadas X e Y do jogador.
+O método <b>Update</b> é responsável por atualizar a posição, a animação e a detecção de colisão do jogador. Ele recebe um objeto GameTime como parâmetro para controlar o tempo decorrido desde a última atualização.
+
+O método <b>Update</b> realiza as seguintes ações:
+
+1. Obtém o estado atual do teclado.
+2. Inicializa a variável isMoving como false.
+3. Verifica se as teclas direcionais estão pressionadas e atualiza a direção e o estado de movimento do jogador.
+4. Se a tecla Espaço estiver pressionada, o jogador para de se mover.
+5. Se o jogador estiver morto, ele não se move.
+6. Atualiza a posição do jogador de acordo com a direção e a velocidade, limitando a posição dentro dos limites do cenário.
+7. Atualiza a animação do jogador de acordo com a direção e o estado de movimento.
+8. Se a tecla Espaço estiver pressionada, o jogador dispara um projétil na direção atual e reproduz o som do projétil.
+
+Em resumo, a classe <b>Player</b> é uma parte crucial do projeto do jogo RPG, pois controla o personagem principal do jogo. Ela oferece uma base sólida para gerir o movimento, a animação e a interação do jogador com o ambiente e os inimigos.
